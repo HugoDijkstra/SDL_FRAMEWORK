@@ -1,0 +1,1 @@
+/usr/bin/c++    -Wall -std=c++11   CMakeFiles/hugworks.dir/hugworks/main.cpp.o CMakeFiles/hugworks.dir/hugworks/enemy.cpp.o CMakeFiles/hugworks.dir/hugworks/entity.cpp.o  -o hugworks -rdynamic external/SDL2-2.0.4/libSDL2-2.0.so.0.4.0 -lm -ldl -lsndio -lGL -Wl,--no-undefined -pthread -Wl,-rpath,/home/hugo/Desktop/programming/Sdl/build/external/SDL2-2.0.4 
