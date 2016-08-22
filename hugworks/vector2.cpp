@@ -1,9 +1,9 @@
 #include "vector2.h"
 
-Vector2::Vector2(int x_, y_)
+Vector2::Vector2(float x_,float y_)
 {
-        x = _x;
-        y = _y;
+        x = x_;
+        y = y_;
 }
 
 Vector2& Vector2::operator+= (const Vector2& oth)
@@ -11,42 +11,42 @@ Vector2& Vector2::operator+= (const Vector2& oth)
         x += oth.x;
         y += oth.y;
 
-        return this*;
+        return *this;
 }
 Vector2& Vector2::operator+= (const float oth)
 {
         x += oth;
-        y += oth; return this*;
+        y += oth; return *this;
 }
 Vector2& Vector2::operator-= (const Vector2& oth)
 {
         x -= oth.x;
-        y -= oth.y; return this*;
+        y -= oth.y; return *this;
 }
 Vector2& Vector2::operator-= (const float oth)
 {
         x -= oth;
-        y -= oth; return this*;
+        y -= oth; return *this;
 }
 Vector2& Vector2::operator/= (const Vector2& oth)
 {
         x /= oth.x;
-        y /= oth.y; return this*;
+        y /= oth.y; return *this;
 }
 Vector2& Vector2::operator/= (const float oth)
 {
         x /= oth;
-        y /= oth; return this*;
+        y /= oth; return *this;
 }
 Vector2& Vector2::operator*= (const Vector2& oth)
 {
         x *= oth.x;
-        y *= oth.y; return this*;
+        y *= oth.y; return *this;
 }
 Vector2& Vector2::operator*= (const float oth)
 {
         x *= oth;
-        y *= oth; return this*;
+        y *= oth; return *this;
 }
 
 Vector2 Vector2::operator+ (const Vector2& oth)
@@ -74,7 +74,7 @@ Vector2 Vector2::operator/ (const Vector2& oth)
 
 Vector2 Vector2::operator/ (const float oth)
 {
-        return Vector2(/ +oth, y / oth);
+        return Vector2(x / oth, y / oth);
 }
 Vector2 Vector2::operator* (const Vector2& oth)
 {
@@ -95,7 +95,7 @@ void Vector2::limit(float value)
   }
 }
 
-void Vector2::getNormalPoint(Vector2 p, Vector2 a, Vector2 b)
+Vector2 Vector2::getNormalPoint(Vector2 p, Vector2 a, Vector2 b)
 {
         Vector2 ap = p - a;
         Vector2 ab = b - a;

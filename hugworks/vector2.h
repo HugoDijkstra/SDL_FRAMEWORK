@@ -13,7 +13,7 @@ class Vector2
 {
 public:
         int x, y;
-        Vector2(float x_ = 0.0f, y_ = 0.0f);
+        Vector2(float x_ = 0.0f,float y_ = 0.0f);
         virtual ~Vector2();
         //Operators
         Vector2& operator+= (const Vector2& oth);
@@ -37,19 +37,19 @@ public:
         Vector2 operator/ (const Vector2& oth);
         Vector2 operator/ (const float oth);
 
-        Vector2 operator* (const Vector2& oth)
-        Vector2 operator* (const float oth)
+        Vector2 operator* (const Vector2& oth);
+        Vector2 operator* (const float oth);
 
         bool operator== (const Vector2& oth);
         bool operator!= (const Vector2& oth);
 
-        std::string operator<<()
+        std::ostream &operator<<(std::ostream &os)
         {
-          return "Vector2(" + x +","+y,")";
+          return os << "Vector2(" + x +','+ y + ')';
         }
 
         float magnitude(){return sqrt((x*x) + (y*y));}
-        float getAngle(){return atan2(y,x)*}
+        float getAngle(){return atan2(y,x);}
         float normalized();
         void normalize();
         void limit(float by);

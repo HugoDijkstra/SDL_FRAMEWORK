@@ -7,6 +7,11 @@ public:
   Entity(SDL_Rect pos_);
   ~Entity();
   SDL_Rect pos;
+  int id;
+  int getId(){return id;}
+
+private:
+  static int ids;
 };
 
 #endif
