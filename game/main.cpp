@@ -19,6 +19,7 @@ void playGame()
   int frames = 0;
   while(play)
   {
+    
     play = frames++ < 10000;
     SDL_Delay(15);
   }

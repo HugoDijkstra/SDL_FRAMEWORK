@@ -41,6 +41,7 @@ include_directories(
 )
 
 set(ALL_LIBS
+	engine
 	SDL2
 )
 
@@ -57,14 +58,22 @@ add_definitions(
 	-D_CRT_SECURE_NO_WARNINGS
 )
 include_directories(${SDL2_INCLUDE_DIRS} ${PROJECT_BINARY_DIR})
+add_library(hugworks
+	hugworks/entity.cpp
+	hugworks/entity.h
+	hugworks/scene.cpp
+	hugworks/scene.h
+	hugworks/input.cpp
+	hugworks/input.h
+	hugworks/vector2.cpp
+	hugworks/vector2.h
+)
+add_executable(game
+game/main.cpp
+game/main.h
+game/enemy.cpp
+game/enemy.h
 
-add_executable(hugworks
-hugworks/main.cpp
-hugworks/main.h
-hugworks/enemy.cpp
-hugworks/enemy.h
-hugworks/entity.cpp
-hugworks/entity.h
 )
 
 
