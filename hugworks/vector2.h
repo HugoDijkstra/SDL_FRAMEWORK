@@ -12,7 +12,7 @@
 class Vector2
 {
 public:
-        int x, y;
+        float x, y;
         Vector2(float x_ = 0.0f,float y_ = 0.0f);
         virtual ~Vector2();
         //Operators
@@ -43,10 +43,6 @@ public:
         bool operator== (const Vector2& oth);
         bool operator!= (const Vector2& oth);
 
-        std::ostream &operator<<(std::ostream &os)
-        {
-          return os << "Vector2(" + x +','+ y + ')';
-        }
 
         float magnitude(){return sqrt((x*x) + (y*y));}
         float getAngle(){return atan2(y,x);}

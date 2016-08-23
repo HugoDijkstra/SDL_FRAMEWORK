@@ -1,7 +1,34 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-SDL_Window* window;
-SDL_Renderer* renderer;
+#include <SDL.h>
+#include <hugworks/scene.h>
+#include <hugworks/renderer.h>
+#include <hugworks/input.h>
+
+class Renderer
+{
+public:
+        Renderer();
+        virtual ~Renderer();
+        SDL_Window* window;
+        SDL_Renderer* renderer;
+        bool initRenderer();
+        bool initAll();
+        bool initWindow();
+        void setupRenderer();
+
+        bool hasInit();
+        void renderCurrent(Scene* scene);
+
+        bool quit = false;
+
+        double deltaTime;
+        double last;
+
+        Scene* scene;
+private:
+};
+
 
 #endif

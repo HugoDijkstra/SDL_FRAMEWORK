@@ -2,20 +2,20 @@
 #define _MAIN_
 
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstdlib>
 #include <vector>
-#include <SDL.h>
+#include <hugworks/renderer.h>
 #include <hugworks/scene.h>
+#include <hugworks/vector2.h>
 #include <hugworks/entity.h>
 #include <game/enemy.h>
+#include <game/particle.h>
 
-SDL_Window* window;
-SDL_Renderer* renderer;
+Renderer* renderer;
+Scene* scene;
 
 bool play = true;
-bool initAll();
-bool initWindow();
-bool initRenderer();
-void setupRenderer();
-void playGame();
-
+void createParticle();
 #endif

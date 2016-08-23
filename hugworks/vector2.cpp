@@ -6,6 +6,11 @@ Vector2::Vector2(float x_,float y_)
         y = y_;
 }
 
+Vector2::~Vector2()
+{
+
+}
+
 Vector2& Vector2::operator+= (const Vector2& oth)
 {
         x += oth.x;
@@ -86,6 +91,15 @@ Vector2 Vector2::operator* (const float oth)
         return Vector2(x * oth, y * oth);
 }
 
+void Vector2::normalize()
+{
+  float mag = magnitude();
+  if(mag != 0)
+  {
+    x  /= mag;
+    y  /= mag;
+  }
+}
 void Vector2::limit(float value)
 {
   if(magnitude() > value)
@@ -101,7 +115,8 @@ Vector2 Vector2::getNormalPoint(Vector2 p, Vector2 a, Vector2 b)
         Vector2 ab = b - a;
         ab.normalize();
 
-        ab += ap.dot(ab);
+        ab *= ap.dot(ab);
+        return a + ab;
 }
 
 float Vector2::dot(Vector2 b)

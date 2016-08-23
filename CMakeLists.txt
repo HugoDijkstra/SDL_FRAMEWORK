@@ -1,20 +1,20 @@
 cmake_minimum_required(VERSION 2.6)
-project(hugworks)
+project(game)
 
 set(Gl_VERSION_MAJOR 1)
 set(Gl_VERSION_MINOR 0)
 
 
 if(UNIX)
-	#set(CMAKE_CXX_FLAGS "-Wall -std=c++0x -pedantic -O2 -g -pg")
-	#set(CMAKE_CXX_FLAGS "-Wall -Wstrict-aliasing -std=c++0x -O2")
+	set(CMAKE_CXX_FLAGS "-Wall -std=c++0x -pedantic -O2 -g -pg")
+	set(CMAKE_CXX_FLAGS "-Wall -Wstrict-aliasing -std=c++0x -O2")
 
-	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11")
+	set(CMAKE_CXX_FLAGS "-Wall -std=c++11")
 
 	# valgrind --leak-check=full ./demo
 	# ./demo # creates cmon.out
 	# gprof demo gmon.out > analysis.txt
-	#set(CMAKE_CXX_FLAGS "-Wall -pg -std=c++11")
+set(CMAKE_CXX_FLAGS "-Wall -pg -std=c++11")
 endif(UNIX)
 
 if(WIN32)
@@ -41,7 +41,7 @@ include_directories(
 )
 
 set(ALL_LIBS
-	engine
+	hugworks
 	SDL2
 )
 
@@ -58,23 +58,33 @@ add_definitions(
 	-D_CRT_SECURE_NO_WARNINGS
 )
 include_directories(${SDL2_INCLUDE_DIRS} ${PROJECT_BINARY_DIR})
+
 add_library(hugworks
+	hugworks/camera.cpp
+	hugworks/camera.h
+	hugworks/color.cpp
+	hugworks/color.h
 	hugworks/entity.cpp
 	hugworks/entity.h
 	hugworks/scene.cpp
 	hugworks/scene.h
 	hugworks/input.cpp
 	hugworks/input.h
+	hugworks/renderer.cpp
+	hugworks/renderer.h
 	hugworks/vector2.cpp
 	hugworks/vector2.h
 )
+
 add_executable(game
 game/main.cpp
 game/main.h
 game/enemy.cpp
 game/enemy.h
+game/particle.cpp
+game/particle.h
 
 )
 
 
-target_link_libraries(hugworks ${ALL_LIBS})
+target_link_libraries(game ${ALL_LIBS})

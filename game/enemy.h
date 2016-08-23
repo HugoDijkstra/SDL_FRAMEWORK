@@ -1,11 +1,11 @@
 #ifndef _ENEMY_
 #define _ENEMY_
 
-#include "entity.h"
+#include <hugworks/entity.h>
 
 class Enemy : public Entity
 {
-
+public:
 };
 
 #endif
