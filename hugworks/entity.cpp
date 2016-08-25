@@ -5,6 +5,7 @@ Entity::Entity()
 {
         pos = new SDL_Rect();
         vecPos = Vector2();
+        id = ids++; 
 }
 Entity::Entity(SDL_Rect pos_)
 {
@@ -33,9 +34,9 @@ Entity::Entity(int x, int y, int h, int w, int r_, int g_, int b_, int a_)
 
 void Entity::update(double deltaTime)
 {
-  pos->x = vecPos.x;
-  pos->y = vecPos.y;
-//  std::cout << 1 << std::endl;
+
+        pos->x = vecPos.x;
+        pos->y = vecPos.y;
 }
 Entity::~Entity()
 {

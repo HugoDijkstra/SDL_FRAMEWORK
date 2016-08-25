@@ -7,22 +7,22 @@ int main(int argc, char const *argv[]) {
         std::cout << "Init " << std::endl;
         renderer = new Renderer();
         scene = new Scene();
-        Entity* e = new Entity(30,30,20,20,255,255,255,255);
-        scene->addEntity(e);
+        //Entity* e = new Entity(30,30,20,20,255,255,255,255);
+        //scene->addEntity(e);
         renderer->scene = scene;
-        int i = 0;
         if(renderer->initAll())
         {
-                while(i++ < 1000)
+                double fullTime;
+                while(fullTime < 5)
                 {
+                        renderer->updateDeltaTime();
+                        fullTime += renderer->deltaTime;
                         createParticle();
                         renderer->renderCurrent(renderer->scene);
 
-                        SDL_Delay(10);
                 }
         }
         //delete rect;
-        delete e;
         delete renderer;
         delete scene;
         SDL_Quit();
@@ -42,6 +42,6 @@ void playGame()
 
 void createParticle()
 {
-        scene->addEntity(new Particle(Vector2(40, 40),Vector2(0,-0.5f),Vector2(0,1), 4));
+        scene->addEntity(new Particle(Vector2(300, 60),Vector2(-6 + (rand() % 12),-40),Vector2(0,30), 10));
         //Vector2(-1 + rand() % 2,-1 * rand()),Vector2(0,0.1f), 4)
 }

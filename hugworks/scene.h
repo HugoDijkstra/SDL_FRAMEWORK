@@ -15,8 +15,7 @@ public:
 
         std::vector<Entity*> entities;
 
-        void addEntity(Entity* entity);
-
+        void addEntity(Entity* entity); 
         Input* input;
 
 };

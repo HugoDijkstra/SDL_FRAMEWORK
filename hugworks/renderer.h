@@ -2,6 +2,7 @@
 #define RENDERER_H
 
 #include <SDL.h>
+#include <vector>
 #include <hugworks/scene.h>
 #include <hugworks/renderer.h>
 #include <hugworks/input.h>
@@ -19,7 +20,9 @@ public:
         void setupRenderer();
 
         bool hasInit();
+        
         void renderCurrent(Scene* scene);
+        void updateDeltaTime();
 
         bool quit = false;
 

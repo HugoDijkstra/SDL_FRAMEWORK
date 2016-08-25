@@ -18,8 +18,9 @@ public:
                 return id;
         }
         int r,g,b,a;
-        virtual void update(double deltaTime);
+        bool alive = true;
 
+        virtual void update(double deltaTime);
 private:
         static int ids;
 };

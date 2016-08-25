@@ -16,22 +16,33 @@ bool Renderer::hasInit()
 {
         return initAll();
 }
+
+void Renderer::updateDeltaTime()
+{
+  double now = SDL_GetTicks();
+  deltaTime = (now - last)/1000;
+  last = now;
+}
+
 void Renderer::renderCurrent(Scene* scene)
 {
-        //calculate deltatime
-        double now = SDL_GetTicks();
-        deltaTime = (now - last)/1000;
-        last = now;
-
-        std::cout << "deltatime = " << deltaTime << std::endl;
         //clear renderer
         SDL_RenderClear(renderer);
         for(unsigned int i = 0; i < scene->entities.size(); i++)
         {
                 //update enteties
-                scene->entities[i]->update(deltaTime);
-                SDL_SetRenderDrawColor(renderer, scene->entities[i]->r,scene->entities[i]->g,scene->entities[i]->b,scene->entities[i]->a);
-                SDL_RenderFillRect(renderer, scene->entities[i]->pos);
+                if(!scene->entities[i]->alive)
+                {
+                        scene->entities.erase(scene->entities.begin() + i);
+                        scene->entities.shrink_to_fit();
+                        i--;
+                }
+                else
+                {
+                        scene->entities[i]->update(deltaTime);
+                        SDL_SetRenderDrawColor(renderer, scene->entities[i]->r,scene->entities[i]->g,scene->entities[i]->b,scene->entities[i]->a);
+                        SDL_RenderFillRect(renderer, scene->entities[i]->pos);
+                }
 
         }
         SDL_SetRenderDrawColor(renderer,0,0,0,255);
