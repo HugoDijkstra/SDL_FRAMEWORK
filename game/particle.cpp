@@ -5,11 +5,14 @@ Particle::Particle()
         velocity = Vector2();
         gravity = Vector2();
 }
-Particle::Particle(Vector2 startPos,Vector2 startVelocity, Vector2 grv, double life)
+Particle::Particle(Vector2 startPos,Vector2 startVelocity, Vector2 grv, double life, Image* image)
 {
+    std::cout << "SSUCKONFE" << std::endl;
         velocity = Vector2(startVelocity.x, startVelocity.y);
         gravity = Vector2(grv.x, grv.y);
-
+        std::cout << image << " Succes?" << std::endl;
+        texture = image;
+        std::cout << texture << " Succes?" << std::endl;
         vecPos.x = startPos.x;
         vecPos.y = startPos.y;
         pos->w = 20;

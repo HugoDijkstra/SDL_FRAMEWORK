@@ -8,7 +8,7 @@ class Particle : public Entity
 {
 public:
   Particle();
-  Particle(Vector2 startPos,Vector2 startVelocity, Vector2 grv, double life);
+  Particle(Vector2 startPos,Vector2 startVelocity, Vector2 grv, double life, Image* image);
   virtual ~Particle();
   virtual void update(double deltaTime);
   Vector2 velocity;

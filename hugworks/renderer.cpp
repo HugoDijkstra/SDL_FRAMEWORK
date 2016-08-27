@@ -30,6 +30,15 @@ void Renderer::renderCurrent(Scene* scene)
         SDL_RenderClear(renderer);
         for(unsigned int i = 0; i < scene->entities.size(); i++)
         {
+                if(scene->entities[i] == NULL)
+                {
+                        if(i++ < scene->entities.size())
+                        {
+                                i++;
+                        }
+                        else
+                                break;
+                }
                 //update enteties
                 if(!scene->entities[i]->alive)
                 {
@@ -39,13 +48,17 @@ void Renderer::renderCurrent(Scene* scene)
                 }
                 else
                 {
-                        scene->entities[i]->update(deltaTime);
-                        SDL_RendererFlip flip = SDL_FLIP_NONE;
-                        SDL_RenderCopyEx(renderer, scene->entities[i]->texture->getTexture(),NULL,scene->entities[i]->pos, scene->entities[i]->rotation,NULL, flip);
-                        std::cout << "Error in rendering : " << SDL_GetError() << std::endl;
-                }
 
+                        scene->entities[i]->update(deltaTime);
+                        if(scene->entities[i]->texture != NULL)
+                        {
+                                SDL_RendererFlip flip = SDL_FLIP_NONE;
+                                SDL_RenderCopyEx(renderer, scene->entities[i]->texture->texture,NULL,scene->entities[i]->pos, scene->entities[i]->rotation,NULL, flip);
+                        }
+                }
         }
+
+
         SDL_SetRenderDrawColor(renderer,0,0,0,255);
         SDL_RenderPresent(renderer);
 }
