@@ -11,6 +11,13 @@ Input::Input()
 
                 keysalreadyUp[i] = false;
                 keysalreadyDown[i] = false;
+
+                if(i < 20)
+                {
+                        mouseButton[i] = false;
+                        mouseButtonUp[i] = false;
+                        mouseButtonDown[i] = false;
+                }
         }
 }
 
@@ -19,8 +26,16 @@ Input::~Input()
 
 }
 
+Vector2 Input::getMouseToScreen()
+{
+        return Vector2(mousePos.x, mousePos.y);
+}
+
 void Input::update()
 {
+        int x, y;
+        SDL_GetMouseState(&x,&y);
+        mousePos = Vector2(x,y);
         SDL_Event event;
         for(unsigned int i = 0; i < 282; i++)
         {
@@ -31,6 +46,17 @@ void Input::update()
                 if(keysDown[i])
                 {
                         keysDown[i] = false;
+                }
+                if(i < 20)
+                {
+                        if(mouseButtonUp[i])
+                        {
+                                mouseButtonUp[i] = false;
+                        }
+                        if(mouseButtonDown[i])
+                        {
+                                mouseButtonDown[i] = false;
+                        }
                 }
         }
         while(SDL_PollEvent(&event))
@@ -58,20 +84,52 @@ void Input::update()
                         mustquit = true;
                         break;
 
+                case SDL_MOUSEBUTTONDOWN:
+                        mouseButtonAlreadyUp[(int)event.button.button] = false;
+                        if(!mouseButtonAlreadyDown[(int)event.button.button])
+                        {
+                                mouseButtonDown[(int)event.button.button] = true;
+                                mouseButtonAlreadyDown[(int)event.button.button] = true;
+                        }
+                        mouseButton[(int)event.button.button] = true;
+                        break;
+
+                case SDL_MOUSEBUTTONUP:
+                        mouseButtonAlreadyDown[(int)event.button.button] = false;
+                        if(!mouseButtonAlreadyUp[(int)event.button.button])
+                        {
+                                mouseButtonUp[(int)event.button.button] = true;
+                                mouseButtonAlreadyUp[(int)event.button.button] = true;
+                        }
+                        mouseButton[(int)event.button.button] = false;
+                        break;
+
                 }
         }
 }
 
 bool Input::getKey(int keyCode)
 {
-  return keys[SDL_GetScancodeFromKey(keyCode)];
+        return keys[SDL_GetScancodeFromKey(keyCode)];
 }
 
 bool Input::getKeyUp(int keyCode)
 {
-  return keysUp[SDL_GetScancodeFromKey(keyCode)];
+        return keysUp[SDL_GetScancodeFromKey(keyCode)];
 }
 bool Input::getKeyDown(int keyCode)
 {
-  return keysDown[SDL_GetScancodeFromKey(keyCode)];
+        return keysDown[SDL_GetScancodeFromKey(keyCode)];
+}
+bool Input::getMouseButton(int keyCode)
+{
+  return mouseButton[keyCode];
+}
+bool Input::getMouseButtonDown(int keyCode)
+{
+  return mouseButtonDown[keyCode];
+}
+bool Input::getMouseButtonUp(int keyCode)
+{
+  return mouseButtonUp[keyCode];
 }

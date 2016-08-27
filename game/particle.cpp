@@ -20,6 +20,7 @@ Particle::Particle(Vector2 startPos,Vector2 startVelocity, Vector2 grv, double l
         this->g = 255;
         this->b = 255;
         this->r = 255;
+
 }
 Particle::~Particle()
 {
@@ -36,8 +37,11 @@ void Particle::update(double deltaTime)
         this->r = 255 * lifeTimeLeft / fullLifeTime;
         this->g = 255 * lifeTimeLeft / fullLifeTime;
         this->b = 255 * lifeTimeLeft / fullLifeTime;
-        if(lifeTimeLeft <= 0.0f)
+        if(this->lifeTimeLeft <= 0.0f)
         {
-          alive = false;
+          this->r = 0;
+          this->g = 0;
+          this->b = 0;
+          this->alive = false;
         }
 }

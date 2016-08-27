@@ -1,6 +1,7 @@
 #ifndef PARTICLE_H
 #define PARTICLE_H
 
+#include <iostream>
 #include <hugworks/entity.h>
 #include <hugworks/vector2.h>
 class Particle : public Entity

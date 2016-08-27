@@ -20,17 +20,30 @@ public:
         bool getMouseButtonDown(int number);
         bool getMouseButtonUp(int number);
 
-        Vector2 mousePos;
+        bool getMustQuit(){return mustquit;};
+
+        Vector2 getMouseToScreen();
+
+        int window_width, window_height;
 
 private:
         bool keys[282];
-        bool keysDown[282];
         bool keysUp[282];
+        bool keysDown[282];
 
         bool keysalreadyUp[282];
         bool keysalreadyDown[282];
-        bool mustquit;
 
+        bool mouseButton[20];
+        bool mouseButtonUp[20];
+        bool mouseButtonDown[20];
+
+        bool mouseButtonAlreadyUp[20];
+        bool mouseButtonAlreadyDown[20];
+
+        bool mustquit = false;
+
+        Vector2 mousePos;
 };
 
 #endif

@@ -19,9 +19,9 @@ bool Renderer::hasInit()
 
 void Renderer::updateDeltaTime()
 {
-  double now = SDL_GetTicks();
-  deltaTime = (now - last)/1000;
-  last = now;
+        double now = SDL_GetTicks();
+        deltaTime = (now - last)/1000;
+        last = now;
 }
 
 void Renderer::renderCurrent(Scene* scene)
@@ -40,8 +40,9 @@ void Renderer::renderCurrent(Scene* scene)
                 else
                 {
                         scene->entities[i]->update(deltaTime);
-                        SDL_SetRenderDrawColor(renderer, scene->entities[i]->r,scene->entities[i]->g,scene->entities[i]->b,scene->entities[i]->a);
-                        SDL_RenderFillRect(renderer, scene->entities[i]->pos);
+                        SDL_RendererFlip flip = SDL_FLIP_NONE;
+                        SDL_RenderCopyEx(renderer, scene->entities[i]->texture->getTexture(),NULL,scene->entities[i]->pos, scene->entities[i]->rotation,NULL, flip);
+                        std::cout << "Error in rendering : " << SDL_GetError() << std::endl;
                 }
 
         }
@@ -85,7 +86,7 @@ bool Renderer::initWindow()
 bool Renderer::initRenderer()
 {
         renderer = SDL_CreateRenderer(window,0,0);
-
+        IMG_Init(IMG_INIT_PNG);
         if(window == NULL)
         {
                 std::cout << "Error in creating renderer: " << SDL_GetError() << std::endl;

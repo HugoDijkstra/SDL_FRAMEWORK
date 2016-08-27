@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include <vector>
+#include <SDL2/SDL_image.h>
 #include <hugworks/scene.h>
 #include <hugworks/renderer.h>
 #include <hugworks/input.h>
@@ -20,7 +21,7 @@ public:
         void setupRenderer();
 
         bool hasInit();
-        
+
         void renderCurrent(Scene* scene);
         void updateDeltaTime();
 

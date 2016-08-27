@@ -12,9 +12,12 @@
 #include <hugworks/entity.h>
 #include <game/enemy.h>
 #include <game/particle.h>
+#include <game/particleemitter.h>
 
 Renderer* renderer;
 Scene* scene;
+Input* input;
+Image* image;
 
 bool play = true;
 void createParticle();

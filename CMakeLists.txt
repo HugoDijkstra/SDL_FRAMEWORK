@@ -30,7 +30,11 @@ if(WIN32)
 	endif(MINGW)
 endif(WIN32)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
+
 find_package(SDL2 REQUIRED)
+
+find_package(SDL2_image REQUIRED)
 
 add_subdirectory(external)
 
@@ -43,6 +47,7 @@ include_directories(
 set(ALL_LIBS
 	hugworks
 	SDL2
+	${SDL2IMAGE_LIBRARY}
 )
 
 include_directories(
@@ -57,8 +62,7 @@ add_definitions(
 	-DGLEW_STATIC
 	-D_CRT_SECURE_NO_WARNINGS
 )
-include_directories(${SDL2_INCLUDE_DIRS} ${PROJECT_BINARY_DIR})
-
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIR} ${PROJECT_BINARY_DIR})
 add_library(hugworks
 	hugworks/camera.cpp
 	hugworks/camera.h
@@ -68,6 +72,8 @@ add_library(hugworks
 	hugworks/entity.h
 	hugworks/scene.cpp
 	hugworks/scene.h
+	hugworks/image.cpp
+	hugworks/image.h
 	hugworks/input.cpp
 	hugworks/input.h
 	hugworks/renderer.cpp
@@ -83,6 +89,8 @@ game/enemy.cpp
 game/enemy.h
 game/particle.cpp
 game/particle.h
+game/particleemitter.cpp
+game/particleemitter.h
 
 )
 

@@ -5,7 +5,7 @@ Entity::Entity()
 {
         pos = new SDL_Rect();
         vecPos = Vector2();
-        id = ids++; 
+        id = ids++;
 }
 Entity::Entity(SDL_Rect pos_)
 {
