@@ -32,6 +32,7 @@ int main(int argc, char const *argv[]) {
                 }
         }
         //delete rect;
+        delete image;
         delete renderer;
         delete scene;
         delete input;
